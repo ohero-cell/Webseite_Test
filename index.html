@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Bikes - An- und Verkauf alter Motorräder</title>
+    <!-- Wir laden Tailwind CSS direkt aus dem Internet -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Ein bisschen Custom-Style für das Vintage-Gefühl */
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap');
+        body { font-family: 'Roboto', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-zinc-900 text-zinc-300">
+
+    <!-- Header / Hero Section -->
+    <header class="relative bg-black text-white text-center py-32 overflow-hidden">
+        <!-- Ein Platzhalter für ein cooles Hintergrundbild (wird abgedunkelt) -->
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-30"></div>
+        <div class="relative z-10 max-w-4xl mx-auto px-6">
+            <h1 class="text-5xl md:text-7xl font-bold text-amber-500 mb-4">Classic Bikes</h1>
+            <p class="text-xl md:text-2xl mb-8">An- und Verkauf historischer Motorräder & Klassiker.</p>
+            <a href="#kontakt" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded transition duration-300">Kontakt aufnehmen</a>
+        </div>
+    </header>
+
+    <!-- Was wir machen -->
+    <section class="py-20 px-6 max-w-6xl mx-auto text-center">
+        <h2 class="text-4xl text-white mb-12">Unsere Leidenschaft: Altes Eisen</h2>
+        <div class="grid md:grid-cols-2 gap-12 text-left">
+            <div class="bg-zinc-800 p-8 rounded-lg border border-zinc-700 shadow-lg">
+                <h3 class="text-2xl text-amber-500 mb-4">Ankauf</h3>
+                <p>Du hast einen alten Scheunenfund oder möchtest dich von einem geliebten Klassiker trennen? Wir kaufen Motorräder aller Marken aus vergangenen Jahrzehnten. Faire Bewertung und unkomplizierte Abwicklung.</p>
+            </div>
+            <div class="bg-zinc-800 p-8 rounded-lg border border-zinc-700 shadow-lg">
+                <h3 class="text-2xl text-amber-500 mb-4">Verkauf</h3>
+                <p>Wir haben ständig eine wechselnde Auswahl an restaurierten oder originalbelassenen Oldtimer-Motorrädern. Maschinen mit Charakter, Geschichte und Seele.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt" class="py-20 bg-zinc-950 border-t border-zinc-800">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl text-white mb-8">Komm vorbei oder schreib uns</h2>
+            <div class="bg-zinc-800 p-8 rounded-lg inline-block text-left border border-zinc-700 shadow-xl">
+                <p class="mb-4"><strong class="text-amber-500">Adresse:</strong> Musterstraße 42, 12345 Motorstadt</p>
+                <p class="mb-4"><strong class="text-amber-500">Telefon:</strong> +49 123 456 789</p>
+                <p class="mb-8"><strong class="text-amber-500">E-Mail:</strong> info@classicbikes-muster.de</p>
+                <p class="text-sm text-zinc-500">Besichtigungen bitte nur nach vorheriger Terminabsprache.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-6 text-center text-zinc-600 text-sm">
+        <p>&copy; 2026 Classic Bikes. Alle Rechte vorbehalten. | <a href="#" class="hover:text-amber-500">Impressum</a></p>
+    </footer>
+
+</body>
+</html>

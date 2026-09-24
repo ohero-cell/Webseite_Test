@@ -3,207 +3,301 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Bikes - An- und Verkauf alter Motorräder</title>
+    <title>Classic Bikes & Custom Schmiede | Oedheim</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        // Tailwind Konfiguration für eigene Farben (BCC Style)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 500: '#e85d04', 600: '#dc2f02' } // Aggressives Custom-Orange
+                    },
+                    fontFamily: {
+                        'oswald': ['Oswald', 'sans-serif'], // Wuchtige Überschriften
+                        'inter': ['Inter', 'sans-serif']    // Fließtext
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap');
-        body { font-family: 'Roboto', sans-serif; }
-        h1, h2, h3, .vintage-font { font-family: 'Playfair Display', serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@500;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #09090b; }
+        h1, h2, h3, h4, .font-oswald { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
         
-        /* Eigener Scrollbar für den coolen Look */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #18181b; }
-        ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 5px; }
+        /* Animation Klassen für JavaScript */
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .is-visible { opacity: 1; transform: translateY(0); }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #e85d04; }
     </style>
 </head>
-<body class="bg-zinc-900 text-zinc-300 relative">
+<body class="text-zinc-300">
 
-    <!-- Navigation Bar (Fixiert am oberen Rand) -->
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-zinc-800 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-amber-500 font-bold text-2xl vintage-font tracking-wider">CB.</div>
-            <div class="space-x-6 text-sm font-medium">
-                <a href="#services" class="hover:text-amber-500 transition">Services</a>
-                <a href="#galerie" class="hover:text-amber-500 transition">Aktueller Bestand</a>
-                <a href="#kontakt" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded transition">Kontakt</a>
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-6 px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-oswald font-bold text-white tracking-widest hover:text-brand-500 transition">
+                CLASSIC<span class="text-brand-500">BIKES</span>
+            </a>
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center text-sm font-semibold tracking-wider uppercase">
+                <a href="#werkstatt" class="hover:text-brand-500 transition">Die Werkstatt</a>
+                <a href="#showroom" class="hover:text-brand-500 transition">Showroom</a>
+                <a href="#leistungen" class="hover:text-brand-500 transition">Leistungen</a>
+                <a href="#kontakt" class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-2 rounded-sm transition">Kontakt</a>
             </div>
         </div>
     </nav>
 
-    <!-- Header / Hero Section -->
-    <header class="relative bg-black text-white text-center h-screen flex flex-col justify-center items-center overflow-hidden">
-        <!-- Hintergrundbild mit Zoom-Animation -->
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-40 hover:scale-105 transition-transform duration-1000"></div>
-        
-        <div class="relative z-10 max-w-4xl mx-auto px-6 drop-shadow-2xl">
-            <h1 class="text-6xl md:text-8xl font-bold text-amber-500 mb-6 tracking-tight">Classic Bikes</h1>
-            <p class="text-xl md:text-2xl mb-10 font-light text-zinc-200">Rostiges Blech, ölige Hände und pure Leidenschaft.<br>Wir geben Zweirad-Legenden ein neues Leben.</p>
-            <a href="#galerie" class="border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black font-bold py-3 px-8 rounded transition duration-300 mr-4">Bestand ansehen</a>
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-black">
+            <!-- Platzhalter für dein erstes lokales Bild: src="images/dein-hero-bild.jpg" -->
+            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite]">
         </div>
-        
-        <!-- Scroll Down Indikator -->
-        <div class="absolute bottom-10 animate-bounce">
-            <a href="#services" class="text-amber-500 text-3xl">↓</a>
+        <div class="relative z-10 text-center px-4 max-w-5xl animate-on-scroll">
+            <p class="text-brand-500 font-bold tracking-[0.2em] mb-4">AN- UND VERKAUF | RESTAURATION | CUSTOMIZING</p>
+            <h1 class="text-6xl md:text-8xl text-white font-bold mb-6 leading-tight drop-shadow-2xl">
+                WIR BAUEN DEINEN <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-orange-400">TRAUM AUF ZWEI RÄDERN</span>
+            </h1>
+            <div class="flex gap-4 justify-center mt-10">
+                <a href="#showroom" class="bg-brand-500 text-white font-oswald text-lg px-8 py-4 hover:bg-brand-600 transition duration-300">FAHRZEUGE ANSEHEN</a>
+                <a href="#kontakt" class="border border-white text-white font-oswald text-lg px-8 py-4 hover:bg-white hover:text-black transition duration-300">WERKSTATT KONTAKTIEREN</a>
+            </div>
         </div>
     </header>
 
-    <!-- Services (Klickbare Karten) -->
-    <section id="services" class="py-24 px-6 max-w-7xl mx-auto text-center">
-        <h2 class="text-4xl text-white mb-4">Unsere Expertise</h2>
-        <p class="text-zinc-400 mb-16 max-w-2xl mx-auto">Klicke auf die Karten, um Beispielbilder und den genauen Ablauf zu sehen.</p>
-        
-        <div class="grid md:grid-cols-2 gap-12 text-left">
-            <!-- Karte Ankauf (Klickbar) -->
-            <div onclick="openModal('modal-ankauf')" class="group cursor-pointer bg-zinc-800/50 hover:bg-zinc-800 p-10 rounded-xl border border-zinc-700 hover:border-amber-500 shadow-lg transition-all duration-300 hover:-translate-y-2">
-                <div class="h-48 mb-6 overflow-hidden rounded-lg">
-                    <img src="https://images.unsplash.com/photo-1615174092497-6cb1693dfacb?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Scheunenfund">
-                </div>
-                <h3 class="text-3xl text-amber-500 mb-4 group-hover:text-amber-400">Motorrad Ankauf ➔</h3>
-                <p class="text-zinc-400 group-hover:text-zinc-300 transition">Du hast einen alten Scheunenfund oder eine unfertige Restauration? Wir suchen ständig altes Eisen. Klicke für Details & Beispiele.</p>
+    <!-- Die Werkstatt (About) -->
+    <section id="werkstatt" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+            <div class="animate-on-scroll">
+                <h2 class="text-5xl text-white mb-6">MEHR ALS NUR<br>EINE WERKSTATT</h2>
+                <div class="w-20 h-1 bg-brand-500 mb-8"></div>
+                <p class="text-lg text-zinc-400 mb-6 leading-relaxed">
+                    Willkommen in Oedheim. Wir sind spezialisiert auf klassische Motorräder, Harley-Davidson und Custom-Umbauten. Bei uns gibt es kein Schema F. Jedes Motorrad, das unsere Halle verlässt, wurde mit maximaler Präzision und Herzblut behandelt.
+                </p>
+                <p class="text-lg text-zinc-400 mb-8 leading-relaxed">
+                    Egal ob du dein Bike verkaufen willst, einen seltenen Scheunenfund suchst oder eine komplette Restauration planst – wir sind dein Partner.
+                </p>
+                <ul class="space-y-4 font-semibold text-white">
+                    <li><i class="fa-solid fa-check text-brand-500 mr-3"></i> Über 15 Jahre Erfahrung</li>
+                    <li><i class="fa-solid fa-check text-brand-500 mr-3"></i> Faire Ankaufpreise & Sofortige Abwicklung</li>
+                    <li><i class="fa-solid fa-check text-brand-500 mr-3"></i> In-House TÜV & Eintragungen</li>
+                </ul>
             </div>
-
-            <!-- Karte Verkauf (Klickbar) -->
-            <div onclick="openModal('modal-verkauf')" class="group cursor-pointer bg-zinc-800/50 hover:bg-zinc-800 p-10 rounded-xl border border-zinc-700 hover:border-amber-500 shadow-lg transition-all duration-300 hover:-translate-y-2">
-                <div class="h-48 mb-6 overflow-hidden rounded-lg">
-                    <img src="https://images.unsplash.com/photo-1599819811279-d5ad9ce18220?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Restauriertes Bike">
+            <div class="relative animate-on-scroll delay-200">
+                <img src="https://images.unsplash.com/photo-1599819811279-d5ad9ce18220?q=80&w=1000" class="rounded-lg shadow-2xl grayscale hover:grayscale-0 transition duration-700">
+                <div class="absolute -bottom-8 -left-8 bg-brand-500 text-white p-8 rounded-lg border-4 border-zinc-950 hidden md:block">
+                    <p class="text-4xl font-oswald font-bold">100%</p>
+                    <p class="font-semibold">PASSION</p>
                 </div>
-                <h3 class="text-3xl text-amber-500 mb-4 group-hover:text-amber-400">Verkauf & Restauration ➔</h3>
-                <p class="text-zinc-400 group-hover:text-zinc-300 transition">Entdecke unsere frisch restaurierten Maschinen. Komplett zerlegt, neu aufgebaut und mit TÜV. Klicke für aktuelle Beispiele.</p>
             </div>
         </div>
     </section>
 
-    <!-- Galerie Sektion -->
-    <section id="galerie" class="py-20 bg-black border-t border-b border-zinc-800">
+    <!-- Showroom & Bestand (Mit JavaScript Filter) -->
+    <section id="showroom" class="py-24 bg-zinc-900 border-t border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-6">
-            <h2 class="text-4xl text-white mb-12 text-center">Zuletzt vermittelt</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <!-- Bild 1 -->
-                <div class="relative group overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1558980663-3685c1d673c4?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-50">
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-white text-xl font-bold bg-amber-600 px-4 py-2 rounded">BMW R75/5 (1972)</span>
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="text-5xl text-white mb-4">AKTUELLER BESTAND</h2>
+                <p class="text-zinc-400">Unsere sofort verfügbaren Maschinen.</p>
+                
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-4 mt-8" id="filter-container">
+                    <button class="filter-btn active bg-brand-500 text-white px-6 py-2 uppercase font-bold text-sm tracking-wide" data-filter="all">Alle</button>
+                    <button class="filter-btn border border-zinc-600 hover:border-brand-500 text-white px-6 py-2 uppercase font-bold text-sm tracking-wide transition" data-filter="classic">Klassiker</button>
+                    <button class="filter-btn border border-zinc-600 hover:border-brand-500 text-white px-6 py-2 uppercase font-bold text-sm tracking-wide transition" data-filter="custom">Custom Bikes</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="bike-gallery">
+                <!-- Bike 1 -->
+                <div class="bike-item group cursor-pointer animate-on-scroll" data-category="classic">
+                    <div class="overflow-hidden rounded-t-lg relative">
+                        <!-- Tausche dies später gegen src="images/dein-bike1.jpg" -->
+                        <img src="https://images.unsplash.com/photo-1558980663-3685c1d673c4?q=80&w=800" class="w-full h-64 object-cover group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 right-4 bg-brand-500 text-white text-xs font-bold px-3 py-1 uppercase">Neu eingetroffen</div>
+                    </div>
+                    <div class="bg-black p-6 rounded-b-lg border border-t-0 border-zinc-800 group-hover:border-brand-500 transition">
+                        <h3 class="text-2xl text-white mb-2">BMW R75/5</h3>
+                        <p class="text-brand-500 font-bold mb-4">12.500 €</p>
+                        <div class="flex justify-between text-sm text-zinc-500 border-t border-zinc-800 pt-4">
+                            <span><i class="fa-solid fa-calendar mr-2"></i> 1972</span>
+                            <span><i class="fa-solid fa-gauge mr-2"></i> 32.000 km</span>
+                        </div>
                     </div>
                 </div>
-                <!-- Bild 2 -->
-                <div class="relative group overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-50">
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-white text-xl font-bold bg-amber-600 px-4 py-2 rounded">Triumph Bonneville</span>
+
+                <!-- Bike 2 -->
+                <div class="bike-item group cursor-pointer animate-on-scroll" data-category="custom">
+                    <div class="overflow-hidden rounded-t-lg relative">
+                        <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=800" class="w-full h-64 object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="bg-black p-6 rounded-b-lg border border-t-0 border-zinc-800 group-hover:border-brand-500 transition">
+                        <h3 class="text-2xl text-white mb-2">Harley-Davidson Bobber</h3>
+                        <p class="text-brand-500 font-bold mb-4">18.900 €</p>
+                        <div class="flex justify-between text-sm text-zinc-500 border-t border-zinc-800 pt-4">
+                            <span><i class="fa-solid fa-calendar mr-2"></i> 2010</span>
+                            <span><i class="fa-solid fa-gauge mr-2"></i> 14.500 km</span>
+                        </div>
                     </div>
                 </div>
-                <!-- Bild 3 -->
-                <div class="relative group overflow-hidden rounded-lg aspect-square">
-                    <img src="https://images.unsplash.com/photo-1525160854475-4cb91bd922f5?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-50">
-                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
-                        <span class="text-white text-xl font-bold bg-amber-600 px-4 py-2 rounded">Honda CB 750 Four</span>
+
+                <!-- Bike 3 -->
+                <div class="bike-item group cursor-pointer animate-on-scroll" data-category="classic">
+                    <div class="overflow-hidden rounded-t-lg relative">
+                        <img src="https://images.unsplash.com/photo-1525160854475-4cb91bd922f5?q=80&w=800" class="w-full h-64 object-cover group-hover:scale-110 transition duration-700">
+                    </div>
+                    <div class="bg-black p-6 rounded-b-lg border border-t-0 border-zinc-800 group-hover:border-brand-500 transition">
+                        <h3 class="text-2xl text-white mb-2">Honda CB 750 Four</h3>
+                        <p class="text-brand-500 font-bold mb-4">Auf Anfrage</p>
+                        <div class="flex justify-between text-sm text-zinc-500 border-t border-zinc-800 pt-4">
+                            <span><i class="fa-solid fa-calendar mr-2"></i> 1976</span>
+                            <span><i class="fa-solid fa-gauge mr-2"></i> Vollrestauration</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Kontakt -->
-    <section id="kontakt" class="py-24 bg-zinc-900">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl text-white mb-8">Komm auf einen Kaffee vorbei</h2>
-            <div class="bg-zinc-800/80 backdrop-blur p-10 rounded-2xl inline-block text-left border border-zinc-700 shadow-2xl">
-                <p class="mb-4 text-lg"><strong class="text-amber-500 w-24 inline-block">Adresse:</strong> Werkstattweg 1, 74196 Oedheim</p>
-                <p class="mb-4 text-lg"><strong class="text-amber-500 w-24 inline-block">Telefon:</strong> 0151 / 123 456 78</p>
-                <p class="mb-8 text-lg"><strong class="text-amber-500 w-24 inline-block">E-Mail:</strong> schrauber@classicbikes.de</p>
-                <a href="mailto:schrauber@classicbikes.de" class="block text-center w-full bg-zinc-700 hover:bg-amber-600 text-white font-bold py-3 rounded transition duration-300">Nachricht schreiben</a>
+    <!-- Kontakt & Anfahrt -->
+    <section id="kontakt" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16">
+            <!-- Kontaktformular -->
+            <div class="animate-on-scroll">
+                <h2 class="text-4xl text-white mb-2">SCHREIB UNS</h2>
+                <p class="text-zinc-400 mb-8">Interesse an einem Bike oder willst du etwas verkaufen? Melde dich.</p>
+                
+                <form class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-zinc-400 mb-2">Name</label>
+                            <input type="text" class="w-full bg-zinc-900 border border-zinc-700 rounded p-3 text-white focus:border-brand-500 outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-zinc-400 mb-2">Telefon</label>
+                            <input type="text" class="w-full bg-zinc-900 border border-zinc-700 rounded p-3 text-white focus:border-brand-500 outline-none transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-zinc-400 mb-2">E-Mail</label>
+                        <input type="email" class="w-full bg-zinc-900 border border-zinc-700 rounded p-3 text-white focus:border-brand-500 outline-none transition">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-zinc-400 mb-2">Deine Nachricht (inkl. Fahrzeugdaten)</label>
+                        <textarea rows="4" class="w-full bg-zinc-900 border border-zinc-700 rounded p-3 text-white focus:border-brand-500 outline-none transition"></textarea>
+                    </div>
+                    <button type="button" class="bg-brand-500 text-white font-oswald text-lg px-8 py-4 hover:bg-brand-600 transition w-full">NACHRICHT ABSENDEN</button>
+                </form>
+            </div>
+
+            <!-- Infos & Karte -->
+            <div class="animate-on-scroll space-y-8">
+                <div class="bg-zinc-900 p-8 rounded-lg border border-zinc-800">
+                    <h3 class="text-2xl text-white mb-6">KONTAKTDATEN</h3>
+                    <div class="space-y-4 text-zinc-400">
+                        <p class="flex items-center"><i class="fa-solid fa-location-dot w-8 text-brand-500 text-xl"></i> Werkstattweg 1, 74196 Oedheim</p>
+                        <p class="flex items-center"><i class="fa-solid fa-phone w-8 text-brand-500 text-xl"></i> +49 151 123 456 78</p>
+                        <p class="flex items-center"><i class="fa-solid fa-envelope w-8 text-brand-500 text-xl"></i> info@classicbikes-oedheim.de</p>
+                        <p class="flex items-center"><i class="fa-solid fa-clock w-8 text-brand-500 text-xl"></i> Mo-Fr: 09:00 - 18:00 Uhr (Terminvereinbarung)</p>
+                    </div>
+                </div>
+                
+                <!-- Google Maps Embed für Oedheim -->
+                <div class="h-64 w-full rounded-lg overflow-hidden border border-zinc-800">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41775.14841975971!2d9.2217134!3d49.2372765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4798357077eef2c1%3A0x41ffd3c8d095870!2s74196%20Oedheim!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-8 text-center text-zinc-600 text-sm">
-        <p>&copy; 2026 Classic Bikes Oedheim. | <a href="#" class="hover:text-amber-500">Impressum</a> | <a href="#" class="hover:text-amber-500">Datenschutz</a></p>
+    <footer class="bg-black py-12 border-t border-zinc-800 text-center">
+        <h2 class="text-3xl font-oswald text-white mb-6 tracking-widest">CLASSIC<span class="text-brand-500">BIKES</span></h2>
+        <div class="flex justify-center space-x-6 mb-8 text-2xl">
+            <a href="#" class="text-zinc-500 hover:text-brand-500 transition"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="text-zinc-500 hover:text-brand-500 transition"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="text-zinc-500 hover:text-brand-500 transition"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+        <p class="text-zinc-600 text-sm">&copy; 2026 Classic Bikes Oedheim. Alle Rechte vorbehalten. | <a href="#" class="hover:text-white transition">Impressum</a> | <a href="#" class="hover:text-white transition">Datenschutz</a></p>
     </footer>
 
-
     <!-- ==========================================
-         MODALS (Versteckte Popups)
-         ========================================== -->
-
-    <!-- Modal: Ankauf -->
-    <div id="modal-ankauf" class="fixed inset-0 bg-black/90 z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
-        <div class="bg-zinc-900 border border-zinc-700 w-full max-w-4xl rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto mx-4">
-            <button onclick="closeModal('modal-ankauf')" class="absolute top-4 right-6 text-zinc-400 hover:text-amber-500 text-4xl font-bold">&times;</button>
-            <h2 class="text-3xl text-amber-500 mb-6 vintage-font">Was wir ankaufen</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <img src="https://images.unsplash.com/photo-1615174092497-6cb1693dfacb?q=80&w=800" class="rounded-lg mb-4 shadow-lg" alt="Scheunenfund">
-                    <p class="text-sm text-zinc-500">Beispiel: BMW R50 Scheunenfund, Standzeit 20 Jahre.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl text-white mb-2">Unser Prozess:</h3>
-                    <ul class="list-disc pl-5 space-y-3 text-zinc-300">
-                        <li><strong>Kontaktaufnahme:</strong> Schick uns Bilder per WhatsApp.</li>
-                        <li><strong>Einschätzung:</strong> Wir melden uns innerhalb von 24h mit einer groben Hausnummer.</li>
-                        <li><strong>Abholung:</strong> Wir kommen mit dem Hänger vorbei, zahlen bar und nehmen das Projekt mit.</li>
-                        <li><strong>Zustand:</strong> Darf rostig sein, darf in Kisten zerlegt sein, Motorschaden ist kein Problem.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Verkauf -->
-    <div id="modal-verkauf" class="fixed inset-0 bg-black/90 z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
-        <div class="bg-zinc-900 border border-zinc-700 w-full max-w-4xl rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto mx-4">
-            <button onclick="closeModal('modal-verkauf')" class="absolute top-4 right-6 text-zinc-400 hover:text-amber-500 text-4xl font-bold">&times;</button>
-            <h2 class="text-3xl text-amber-500 mb-6 vintage-font">Aktuell zum Verkauf</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="text-xl text-white mb-2">Vollständig restauriert:</h3>
-                    <p class="text-zinc-300 mb-4">Alle unsere Bikes werden bis auf die letzte Schraube zerlegt. Rahmen gepulvert, Motor revidiert, Elektrik komplett neu. Mit frischem TÜV und H-Zulassung.</p>
-                    <button onclick="closeModal('modal-verkauf')" class="bg-amber-600 text-white px-6 py-2 rounded hover:bg-amber-700">Zurückschließen</button>
-                </div>
-                <div class="grid grid-cols-2 gap-2">
-                    <img src="https://images.unsplash.com/photo-1599819811279-d5ad9ce18220?q=80&w=400" class="rounded border border-zinc-700">
-                    <img src="https://images.unsplash.com/photo-1558981001-1995369a39cd?q=80&w=400" class="rounded border border-zinc-700">
-                    <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=400" class="rounded border border-zinc-700">
-                    <img src="https://images.unsplash.com/photo-1558980394-0a37b36085cb?q=80&w=400" class="rounded border border-zinc-700">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ==========================================
-         JAVASCRIPT (Die Logik)
+         JAVASCRIPT FÜR DIE INTERAKTIVITÄT
          ========================================== -->
     <script>
-        // Funktion zum Öffnen der Popups
-        function openModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.remove('hidden'); // Macht das HTML-Element sichtbar
-            
-            // Kleiner Trick für einen weichen Übergang
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modal.classList.add('opacity-100');
-            }, 10);
-        }
+        // 1. Navbar Scroll Effekt (wird schwarz beim Runterscrollen)
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.remove('bg-transparent', 'py-6');
+                nav.classList.add('bg-black/95', 'py-4', 'border-b', 'border-zinc-800');
+            } else {
+                nav.classList.add('bg-transparent', 'py-6');
+                nav.classList.remove('bg-black/95', 'py-4', 'border-b', 'border-zinc-800');
+            }
+        });
 
-        // Funktion zum Schließen der Popups
-        function closeModal(modalId) {
-            const modal = document.getElementById(modalId);
-            modal.classList.remove('opacity-100');
-            modal.classList.add('opacity-0');
-            
-            // Wartet, bis die Animation fertig ist, bevor es wieder komplett versteckt wird
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        }
+        // 2. Filter-Logik für den Showroom (Die Buttons)
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const bikeItems = document.querySelectorAll('.bike-item');
 
-        // Schließt das Modal, wenn man ins Schwarze (außerhalb des Kastens) klickt
-        window.onclick = function(event) {
-            if (event.target.id === 'modal-ankauf') closeModal('modal-ankauf');
-            if (event.target.id === 'modal-verkauf') closeModal('modal-verkauf');
-        }
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Styling der Buttons ändern
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-500');
+                    b.classList.add('border', 'border-zinc-600');
+                });
+                btn.classList.remove('border', 'border-zinc-600');
+                btn.classList.add('bg-brand-500');
+
+                // Filter Logik anwenden
+                const filterValue = btn.getAttribute('data-filter');
+                
+                bikeItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'block';
+                        // Kurzer Timeout für einen weichen Fade-in Effekt
+                        setTimeout(() => item.style.opacity = '1', 50);
+                    } else {
+                        item.style.opacity = '0';
+                        setTimeout(() => item.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // 3. High-End Scroll-Animationen (Intersection Observer)
+        // Lässt Elemente sanft einschweben, sobald man zu ihnen scrollt
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target); // Animation nur beim ersten Mal abspielen
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
     </script>
 </body>
 </html>

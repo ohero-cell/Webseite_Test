@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showroom & Fahrzeugbestand | Classic Bikes Oedheim</title>
+  <meta name="description" content="Entdecke unsere handverlesenen klassischen Motorräder, Harley-Davidson Customs und restaurierte BMW Boxer. Sofort verfügbar mit Garantie & In-House TÜV in Oedheim.">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header scrolled" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Classic Bikes Oedheim Startseite">
+        <div class="brand-icon">
+          <i class="fa-solid fa-motorcycle"></i>
+        </div>
+        <div class="brand-text-wrap">
+          <span class="brand-name">CLASSIC<span>BIKES</span></span>
+          <span class="brand-subtext">Custom Schmiede Oedheim</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" aria-label="Hauptnavigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="showroom.html" class="nav-link active">Showroom</a>
+        <a href="werkstatt.html" class="nav-link">Die Werkstatt</a>
+        <a href="leistungen.html" class="nav-link">Leistungen</a>
+        <a href="ankauf.html" class="nav-link">Motorrad-Ankauf</a>
+        <a href="kontakt.html" class="nav-link">Kontakt</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="nav-actions">
+        <a href="tel:+4915112345678" class="nav-phone-badge">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>+49 151 123 456 78</span>
+        </a>
+        <button class="mobile-toggle" aria-label="Menü öffnen">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop"></div>
+  <aside class="mobile-drawer" aria-label="Mobiles Navigationsmenü">
+    <div>
+      <button class="drawer-close" aria-label="Menü schließen">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="brand-logo" style="margin-bottom: 2rem;">
+        <div class="brand-icon"><i class="fa-solid fa-motorcycle"></i></div>
+        <div class="brand-text-wrap">
+          <span class="brand-name">CLASSIC<span>BIKES</span></span>
+          <span class="brand-subtext">Oedheim</span>
+        </div>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="index.html">Home</a>
+        <a href="showroom.html" class="active">Showroom & Bestand</a>
+        <a href="werkstatt.html">Die Werkstatt</a>
+        <a href="leistungen.html">Leistungen & Umbau</a>
+        <a href="ankauf.html">Motorrad Ankauf</a>
+        <a href="kontakt.html">Kontakt & Anfahrt</a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Page Banner -->
+  <div class="page-banner">
+    <div class="container">
+      <div class="breadcrumb-nav">
+        <a href="index.html">Home</a>
+        <span class="breadcrumb-separator"><i class="fa-solid fa-chevron-right"></i></span>
+        <span style="color:var(--accent);">Showroom & Fahrzeugbestand</span>
+      </div>
+      <h1 class="section-title" style="margin-bottom:0.75rem;">AKTUELLER BESTAND</h1>
+      <p class="section-desc">
+        Jedes unserer Motorräder wurde in unserer Meisterwerkstatt eingehend geprüft, revidiert und mit Liebe zum Detail fahrfertig aufbereitet. Probefahrten nach Terminabsprache jederzeit möglich.
+      </p>
+    </div>
+  </div>
+
+  <!-- Main Showroom Section -->
+  <main style="padding: 4rem 0 7rem; background: var(--bg-body);">
+    <div class="container">
+
+      <!-- Interactive Filter Bar -->
+      <div style="background:var(--bg-surface); border:1px solid var(--border-medium); border-radius:12px; padding:1.5rem; margin-bottom:3rem; box-shadow:var(--shadow-sm);">
+        <div style="display:grid; grid-template-columns: 2fr 1fr; gap:1.25rem; margin-bottom:1.5rem;" class="filter-top-row">
+          
+          <!-- Search Field -->
+          <div style="position:relative;">
+            <i class="fa-solid fa-magnifying-glass" style="position:absolute; left:1.1rem; top:50%; transform:translateY(-50%); color:var(--text-dim);"></i>
+            <input type="text" id="showroom-search" class="form-control" placeholder="Modell, Marke (z. B. BMW, Harley, CB750) oder Baujahr suchen..." style="padding-left:2.8rem;">
+          </div>
+
+          <!-- Sort Select -->
+          <div style="display:flex; align-items:center; gap:0.75rem;">
+            <label for="showroom-sort" style="font-size:0.85rem; color:var(--text-dim); white-space:nowrap; text-transform:uppercase; font-weight:600;">Sortieren:</label>
+            <select id="showroom-sort" class="form-control" style="cursor:pointer;">
+              <option value="featured">Empfohlene Highlights</option>
+              <option value="price-asc">Preis: Aufsteigend</option>
+              <option value="price-desc">Preis: Absteigend</option>
+              <option value="year-desc">Baujahr: Neueste zuerst</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Category Pills & Count -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div class="flex flex-wrap gap-2" id="filter-container" style="display:flex; flex-wrap:wrap; gap:0.6rem;">
+            <button class="btn btn-secondary btn-sm filter-btn active" data-filter="all">Alle Maschinen</button>
+            <button class="btn btn-secondary btn-sm filter-btn" data-filter="classic">Klassiker</button>
+            <button class="btn btn-secondary btn-sm filter-btn" data-filter="custom">Custom & Bobber</button>
+            <button class="btn btn-secondary btn-sm filter-btn" data-filter="caferacer">Cafe Racer</button>
+            <button class="btn btn-secondary btn-sm filter-btn" data-filter="restoration">Restaurationsprojekte</button>
+          </div>
+
+          <div id="results-count" style="font-size:0.85rem; color:var(--text-muted); font-weight:600;">
+            Lade Maschinen...
+          </div>
+        </div>
+      </div>
+
+      <!-- Bikes Grid Container (Dynamic via JS) -->
+      <div id="bike-gallery" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem;">
+        <!-- Filled by js/showroom.js -->
+      </div>
+
+      <!-- Custom Request Banner -->
+      <div style="margin-top:5rem; background:linear-gradient(135deg, rgba(255,85,0,0.1) 0%, var(--bg-surface-elevated) 100%); border:1px solid var(--border-medium); border-radius:14px; padding:3rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem;">
+        <div style="max-width:650px;">
+          <span class="badge badge-accent" style="margin-bottom:0.75rem;">Persönlicher Suchauftrag</span>
+          <h3 style="font-size:2rem; color:#fff; margin-bottom:0.75rem;">DEIN TRAUM-MOTORRAD IST NICHT DABEI?</h3>
+          <p style="color:var(--text-muted); line-height:1.65;">
+            Dank unseres europaweiten Netzwerks zu Sammlern, Auktionen und privaten Scheunenfunden finden wir fast jeden gesuchten Klassiker für dich – inklusive Komplettdurchsicht und TÜV-Zulassung.
+          </p>
+        </div>
+        <a href="kontakt.html?topic=suchauftrag" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-binoculars"></i> Suchauftrag starten
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Interactive Bike Detail Modal -->
+  <div class="modal-overlay" id="bike-modal" aria-hidden="true" role="dialog">
+    <div class="modal-container">
+      <button class="modal-close-btn" aria-label="Schließen">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal-dynamic-content">
+        <!-- Injected via js/showroom.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 1.25rem;">
+            <div class="brand-icon"><i class="fa-solid fa-motorcycle"></i></div>
+            <div class="brand-text-wrap">
+              <span class="brand-name">CLASSIC<span>BIKES</span></span>
+              <span class="brand-subtext">Custom Schmiede Oedheim</span>
+            </div>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.7; margin-bottom:1.5rem; max-width:320px;">
+            Dein Partner für klassische Motorräder, Concourse-Restaurationen, An- & Verkauf und professionelles Customizing in Baden-Württemberg.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://wa.me/4915112345678" target="_blank" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Startseite</a></li>
+            <li><a href="showroom.html"><i class="fa-solid fa-chevron-right"></i> Showroom & Bestand</a></li>
+            <li><a href="werkstatt.html"><i class="fa-solid fa-chevron-right"></i> Die Werkstatt</a></li>
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> Leistungen</a></li>
+            <li><a href="ankauf.html"><i class="fa-solid fa-chevron-right"></i> Motorrad Ankauf</a></li>
+            <li><a href="kontakt.html"><i class="fa-solid fa-chevron-right"></i> Kontakt & Anfahrt</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Spezialgebiete</h4>
+          <ul class="footer-links">
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> BMW Boxer Restauration</a></li>
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> Harley-Davidson Custom</a></li>
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> In-House TÜV §21</a></li>
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> Oldtimer H-Gutachten</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Werkstatt Oedheim</h4>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>Werkstattweg 1, 74196 Oedheim</div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>+49 151 123 456 78</div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>info@classicbikes-oedheim.de</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Classic Bikes Oedheim. Alle Rechte vorbehalten.</div>
+        <div class="footer-bottom-links">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="kontakt.html">Anfahrt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll To Top Button -->
+  <button class="scroll-top-btn" aria-label="Nach oben scrollen">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/showroom.js"></script>
+</body>
+</html>

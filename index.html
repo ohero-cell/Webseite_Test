@@ -1,303 +1,625 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Bikes & Custom Schmiede | Oedheim</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome für Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        // Tailwind Konfiguration für eigene Farben (BCC Style)
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: { 500: '#e85d04', 600: '#dc2f02' } // Aggressives Custom-Orange
-                    },
-                    fontFamily: {
-                        'oswald': ['Oswald', 'sans-serif'], // Wuchtige Überschriften
-                        'inter': ['Inter', 'sans-serif']    // Fließtext
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Oswald:wght@500;700&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #09090b; }
-        h1, h2, h3, h4, .font-oswald { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
-        
-        /* Animation Klassen für JavaScript */
-        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .is-visible { opacity: 1; transform: translateY(0); }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #e85d04; }
-    </style>
-</head>
-<body class="text-zinc-300">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classic Bikes & Custom Schmiede Oedheim | Klassiker, Restauration & Customizing</title>
+  <meta name="description" content="Klassische Motorräder, High-End Customizing, Harley-Davidson & BMW Restaurationen in Oedheim. Sofortiger Ankauf, Meisterwerkstatt & In-House TÜV.">
 
-    <!-- Navigation -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-6 px-8">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <a href="#" class="text-3xl font-oswald font-bold text-white tracking-widest hover:text-brand-500 transition">
-                CLASSIC<span class="text-brand-500">BIKES</span>
-            </a>
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8 items-center text-sm font-semibold tracking-wider uppercase">
-                <a href="#werkstatt" class="hover:text-brand-500 transition">Die Werkstatt</a>
-                <a href="#showroom" class="hover:text-brand-500 transition">Showroom</a>
-                <a href="#leistungen" class="hover:text-brand-500 transition">Leistungen</a>
-                <a href="#kontakt" class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-2 rounded-sm transition">Kontakt</a>
-            </div>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom Design System -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+  <!-- Site Navigation Header -->
+  <header class="site-header" id="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand-logo" aria-label="Classic Bikes Oedheim Startseite">
+        <div class="brand-icon">
+          <i class="fa-solid fa-motorcycle"></i>
         </div>
-    </nav>
+        <div class="brand-text-wrap">
+          <span class="brand-name">CLASSIC<span>BIKES</span></span>
+          <span class="brand-subtext">Custom Schmiede Oedheim</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" aria-label="Hauptnavigation">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="showroom.html" class="nav-link">Showroom</a>
+        <a href="werkstatt.html" class="nav-link">Die Werkstatt</a>
+        <a href="leistungen.html" class="nav-link">Leistungen</a>
+        <a href="ankauf.html" class="nav-link">Motorrad-Ankauf</a>
+        <a href="kontakt.html" class="nav-link">Kontakt</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="nav-actions">
+        <a href="tel:+4915112345678" class="nav-phone-badge">
+          <i class="fa-solid fa-phone-volume"></i>
+          <span>+49 151 123 456 78</span>
+        </a>
+        <a href="showroom.html" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-eye"></i> Bestand
+        </a>
+        <button class="mobile-toggle" aria-label="Menü öffnen">
+          <i class="fa-solid fa-bars-staggered"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="drawer-backdrop"></div>
+  <aside class="mobile-drawer" aria-label="Mobiles Navigationsmenü">
+    <div>
+      <button class="drawer-close" aria-label="Menü schließen">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="brand-logo" style="margin-bottom: 2rem;">
+        <div class="brand-icon"><i class="fa-solid fa-motorcycle"></i></div>
+        <div class="brand-text-wrap">
+          <span class="brand-name">CLASSIC<span>BIKES</span></span>
+          <span class="brand-subtext">Oedheim</span>
+        </div>
+      </div>
+      <nav class="mobile-nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="showroom.html">Showroom & Bestand</a>
+        <a href="werkstatt.html">Die Werkstatt</a>
+        <a href="leistungen.html">Leistungen & Umbau</a>
+        <a href="ankauf.html">Motorrad Ankauf</a>
+        <a href="kontakt.html">Kontakt & Anfahrt</a>
+      </nav>
+    </div>
+    <div>
+      <div style="border-top: 1px solid var(--border-subtle); padding-top: 1.5rem; margin-top: 1.5rem;">
+        <div class="live-status-pill badge badge-muted" style="margin-bottom: 1rem;">
+          <span class="badge-dot pulse" style="background:#10b981;"></span> Werkstatt geöffnet
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem;">Werkstattweg 1, 74196 Oedheim</p>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Tel: +49 151 123 456 78</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
 
     <!-- Hero Section -->
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-black">
-            <!-- Platzhalter für dein erstes lokales Bild: src="images/dein-hero-bild.jpg" -->
-            <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-40 scale-105 animate-[pulse_10s_ease-in-out_infinite]">
-        </div>
-        <div class="relative z-10 text-center px-4 max-w-5xl animate-on-scroll">
-            <p class="text-brand-500 font-bold tracking-[0.2em] mb-4">AN- UND VERKAUF | RESTAURATION | CUSTOMIZING</p>
-            <h1 class="text-6xl md:text-8xl text-white font-bold mb-6 leading-tight drop-shadow-2xl">
-                WIR BAUEN DEINEN <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-orange-400">TRAUM AUF ZWEI RÄDERN</span>
-            </h1>
-            <div class="flex gap-4 justify-center mt-10">
-                <a href="#showroom" class="bg-brand-500 text-white font-oswald text-lg px-8 py-4 hover:bg-brand-600 transition duration-300">FAHRZEUGE ANSEHEN</a>
-                <a href="#kontakt" class="border border-white text-white font-oswald text-lg px-8 py-4 hover:bg-white hover:text-black transition duration-300">WERKSTATT KONTAKTIEREN</a>
-            </div>
-        </div>
-    </header>
+    <section class="hero">
+      <div class="hero-bg-wrapper">
+        <img src="images/hero.jpg" alt="Custom Motorcycle Schmiede Oedheim" class="hero-bg-img">
+        <div class="hero-overlay"></div>
+      </div>
 
-    <!-- Die Werkstatt (About) -->
-    <section id="werkstatt" class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div class="animate-on-scroll">
-                <h2 class="text-5xl text-white mb-6">MEHR ALS NUR<br>EINE WERKSTATT</h2>
-                <div class="w-20 h-1 bg-brand-500 mb-8"></div>
-                <p class="text-lg text-zinc-400 mb-6 leading-relaxed">
-                    Willkommen in Oedheim. Wir sind spezialisiert auf klassische Motorräder, Harley-Davidson und Custom-Umbauten. Bei uns gibt es kein Schema F. Jedes Motorrad, das unsere Halle verlässt, wurde mit maximaler Präzision und Herzblut behandelt.
-                </p>
-                <p class="text-lg text-zinc-400 mb-8 leading-relaxed">
-                    Egal ob du dein Bike verkaufen willst, einen seltenen Scheunenfund suchst oder eine komplette Restauration planst – wir sind dein Partner.
-                </p>
-                <ul class="space-y-4 font-semibold text-white">
-                    <li><i class="fa-solid fa-check text-brand-500 mr-3"></i> Über 15 Jahre Erfahrung</li>
-                    <li><i class="fa-solid fa-check text-brand-500 mr-3"></i> Faire Ankaufpreise & Sofortige Abwicklung</li>
-                    <li><i class="fa-solid fa-check text-brand-500 mr-3"></i> In-House TÜV & Eintragungen</li>
-                </ul>
-            </div>
-            <div class="relative animate-on-scroll delay-200">
-                <img src="https://images.unsplash.com/photo-1599819811279-d5ad9ce18220?q=80&w=1000" class="rounded-lg shadow-2xl grayscale hover:grayscale-0 transition duration-700">
-                <div class="absolute -bottom-8 -left-8 bg-brand-500 text-white p-8 rounded-lg border-4 border-zinc-950 hidden md:block">
-                    <p class="text-4xl font-oswald font-bold">100%</p>
-                    <p class="font-semibold">PASSION</p>
-                </div>
-            </div>
+      <div class="container hero-content">
+        <div class="hero-badge-wrap fade-up">
+          <span class="badge badge-accent">
+            <span class="badge-dot pulse" style="background:var(--accent);"></span>
+            Meisterbetrieb Oedheim
+          </span>
+          <div class="live-status-pill badge badge-muted">
+            <span class="badge-dot" style="background:#10b981;"></span>
+            Werkstatt geöffnet • bis 18:00
+          </div>
         </div>
+
+        <h1 class="hero-title fade-up delay-1">
+          WIR SCHMIEDEN DEINEN <br>
+          <span class="text-gradient">TRAUM AUF ZWEI RÄDERN</span>
+        </h1>
+
+        <p class="hero-description fade-up delay-2">
+          Spezialisiert auf klassische Motorräder, Harley-Davidson & BMW Boxer. Von der millimetergenauen Concourse-Restauration bis zum radikalen Custom-Unikat – jedes Bike wird mit schwäbischer Präzision gefertigt.
+        </p>
+
+        <div class="hero-cta-group fade-up delay-3">
+          <a href="showroom.html" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-motorcycle"></i> Aktueller Bestand
+          </a>
+          <a href="ankauf.html" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-hand-holding-dollar"></i> Motorrad verkaufen
+          </a>
+          <a href="werkstatt.html" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-wrench"></i> Zur Werkstatt
+          </a>
+        </div>
+
+        <!-- Floating Stats Grid -->
+        <div class="hero-stats-bar fade-up delay-4">
+          <div class="stat-item">
+            <div class="stat-number">15<span>+</span></div>
+            <div class="stat-label">Jahre Erfahrung</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">340<span>+</span></div>
+            <div class="stat-label">Bikes restauriert</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100<span>%</span></div>
+            <div class="stat-label">In-House TÜV Quote</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4.9<span>★</span></div>
+            <div class="stat-label">Kundenbewertung</div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Showroom & Bestand (Mit JavaScript Filter) -->
-    <section id="showroom" class="py-24 bg-zinc-900 border-t border-b border-zinc-800">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="text-5xl text-white mb-4">AKTUELLER BESTAND</h2>
-                <p class="text-zinc-400">Unsere sofort verfügbaren Maschinen.</p>
-                
-                <!-- Filter Buttons -->
-                <div class="flex flex-wrap justify-center gap-4 mt-8" id="filter-container">
-                    <button class="filter-btn active bg-brand-500 text-white px-6 py-2 uppercase font-bold text-sm tracking-wide" data-filter="all">Alle</button>
-                    <button class="filter-btn border border-zinc-600 hover:border-brand-500 text-white px-6 py-2 uppercase font-bold text-sm tracking-wide transition" data-filter="classic">Klassiker</button>
-                    <button class="filter-btn border border-zinc-600 hover:border-brand-500 text-white px-6 py-2 uppercase font-bold text-sm tracking-wide transition" data-filter="custom">Custom Bikes</button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="bike-gallery">
-                <!-- Bike 1 -->
-                <div class="bike-item group cursor-pointer animate-on-scroll" data-category="classic">
-                    <div class="overflow-hidden rounded-t-lg relative">
-                        <!-- Tausche dies später gegen src="images/dein-bike1.jpg" -->
-                        <img src="https://images.unsplash.com/photo-1558980663-3685c1d673c4?q=80&w=800" class="w-full h-64 object-cover group-hover:scale-110 transition duration-700">
-                        <div class="absolute top-4 right-4 bg-brand-500 text-white text-xs font-bold px-3 py-1 uppercase">Neu eingetroffen</div>
-                    </div>
-                    <div class="bg-black p-6 rounded-b-lg border border-t-0 border-zinc-800 group-hover:border-brand-500 transition">
-                        <h3 class="text-2xl text-white mb-2">BMW R75/5</h3>
-                        <p class="text-brand-500 font-bold mb-4">12.500 €</p>
-                        <div class="flex justify-between text-sm text-zinc-500 border-t border-zinc-800 pt-4">
-                            <span><i class="fa-solid fa-calendar mr-2"></i> 1972</span>
-                            <span><i class="fa-solid fa-gauge mr-2"></i> 32.000 km</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bike 2 -->
-                <div class="bike-item group cursor-pointer animate-on-scroll" data-category="custom">
-                    <div class="overflow-hidden rounded-t-lg relative">
-                        <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=800" class="w-full h-64 object-cover group-hover:scale-110 transition duration-700">
-                    </div>
-                    <div class="bg-black p-6 rounded-b-lg border border-t-0 border-zinc-800 group-hover:border-brand-500 transition">
-                        <h3 class="text-2xl text-white mb-2">Harley-Davidson Bobber</h3>
-                        <p class="text-brand-500 font-bold mb-4">18.900 €</p>
-                        <div class="flex justify-between text-sm text-zinc-500 border-t border-zinc-800 pt-4">
-                            <span><i class="fa-solid fa-calendar mr-2"></i> 2010</span>
-                            <span><i class="fa-solid fa-gauge mr-2"></i> 14.500 km</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bike 3 -->
-                <div class="bike-item group cursor-pointer animate-on-scroll" data-category="classic">
-                    <div class="overflow-hidden rounded-t-lg relative">
-                        <img src="https://images.unsplash.com/photo-1525160854475-4cb91bd922f5?q=80&w=800" class="w-full h-64 object-cover group-hover:scale-110 transition duration-700">
-                    </div>
-                    <div class="bg-black p-6 rounded-b-lg border border-t-0 border-zinc-800 group-hover:border-brand-500 transition">
-                        <h3 class="text-2xl text-white mb-2">Honda CB 750 Four</h3>
-                        <p class="text-brand-500 font-bold mb-4">Auf Anfrage</p>
-                        <div class="flex justify-between text-sm text-zinc-500 border-t border-zinc-800 pt-4">
-                            <span><i class="fa-solid fa-calendar mr-2"></i> 1976</span>
-                            <span><i class="fa-solid fa-gauge mr-2"></i> Vollrestauration</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!-- Highlights Section (Showroom Teaser) -->
+    <section style="padding: 7rem 0 5rem; background: var(--bg-surface);">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1.5rem; margin-bottom: 3.5rem;">
+          <div>
+            <span class="section-tag">Frisch aus der Werkstatt</span>
+            <h2 class="section-title">SOFORT VERFÜGBARE MASCHINEN</h2>
+            <p class="section-desc">Handverlesene Klassiker, seltene Sammlerstücke und fahrbereite Custom Umbauten – komplett werkstattgeprüft mit Garantie.</p>
+          </div>
+          <a href="showroom.html" class="btn btn-secondary">
+            Alle Fahrzeuge ansehen <i class="fa-solid fa-arrow-right"></i>
+          </a>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+          
+          <!-- Card 1 -->
+          <article class="bike-card fade-up">
+            <div class="bike-card-img-wrap">
+              <img src="images/restoration_after.jpg" alt="BMW R90/6 Concourse Restauration" class="bike-card-img" loading="lazy">
+              <div class="bike-badge-top">
+                <span class="badge badge-accent">Meisterwerk</span>
+              </div>
+            </div>
+            <div class="bike-card-body">
+              <span class="bike-card-meta-category">BMW • KLASSIKER</span>
+              <h3 class="bike-card-title">BMW R90/6 Concourse</h3>
+              <div class="bike-specs-grid">
+                <div class="bike-spec-item"><i class="fa-solid fa-calendar"></i> 1974</div>
+                <div class="bike-spec-item"><i class="fa-solid fa-gauge-high"></i> 1.200 km</div>
+                <div class="bike-spec-item"><i class="fa-solid fa-bolt"></i> 60 PS</div>
+                <div class="bike-spec-item"><i class="fa-solid fa-shield-halved"></i> TÜV Neu</div>
+              </div>
+              <div class="bike-card-footer">
+                <div class="bike-price-block">
+                  <span class="bike-price-label">Kaufpreis</span>
+                  <span class="bike-price-value">16.900 €</span>
+                </div>
+                <a href="showroom.html" class="btn btn-outline-accent btn-sm">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="bike-card fade-up delay-1">
+            <div class="bike-card-img-wrap">
+              <img src="images/bike_harley.jpg" alt="Harley-Davidson Shovelhead Custom" class="bike-card-img" loading="lazy">
+              <div class="bike-badge-top">
+                <span class="badge badge-accent">Unikat</span>
+              </div>
+            </div>
+            <div class="bike-card-body">
+              <span class="bike-card-meta-category">Harley-Davidson • CUSTOM</span>
+              <h3 class="bike-card-title">Shovelhead Bobber Custom</h3>
+              <div class="bike-specs-grid">
+                <div class="bike-spec-item"><i class="fa-solid fa-calendar"></i> 1981</div>
+                <div class="bike-spec-item"><i class="fa-solid fa-gauge-high"></i> 8.400 km</div>
+                <div class="bike-spec-item"><i class="fa-solid fa-bolt"></i> 68 PS</div>
+                <div class="bike-spec-item"><i class="fa-solid fa-shield-halved"></i> Eingetragen</div>
+              </div>
+              <div class="bike-card-footer">
+                <div class="bike-price-block">
+                  <span class="bike-price-label">Kaufpreis</span>
+                  <span class="bike-price-value">24.500 €</span>
+                </div>
+                <a href="showroom.html" class="btn btn-outline-accent btn-sm">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="bike-card fade-up delay-2">
+            <div class="bike-card-img-wrap">
+              <img src="images/bike_caferacer.jpg" alt="Honda CB 750 Four Cafe Racer" class="bike-card-img" loading="lazy">
+              <div class="bike-badge-top">
+                <span class="badge badge-emerald">Cafe Racer</span>
+              </div>
+            </div>
+            <div class="bike-card-body">
+              <span class="bike-card-meta-category">Honda • CAFE RACER</span>
+              <h3 class="bike-card-title">Honda CB 750 Four</h3>
+              <div class="bike-specs-grid">
+                <div class="bike-spec-item"><i class="fa-solid fa-calendar"></i> 1977</div>
+                <div class="bike-spec-item"><i class="fa-solid fa-gauge-high"></i> 18.200 km</div>
+                <div class="bike-spec-item"><i class="fa-solid fa-bolt"></i> 67 PS</div>
+                <div class="bike-spec-item"><i class="fa-solid fa-shield-halved"></i> TÜV Neu</div>
+              </div>
+              <div class="bike-card-footer">
+                <div class="bike-price-block">
+                  <span class="bike-price-label">Kaufpreis</span>
+                  <span class="bike-price-value">14.800 €</span>
+                </div>
+                <a href="showroom.html" class="btn btn-outline-accent btn-sm">Details</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
     </section>
 
-    <!-- Kontakt & Anfahrt -->
-    <section id="kontakt" class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-16">
-            <!-- Kontaktformular -->
-            <div class="animate-on-scroll">
-                <h2 class="text-4xl text-white mb-2">SCHREIB UNS</h2>
-                <p class="text-zinc-400 mb-8">Interesse an einem Bike oder willst du etwas verkaufen? Melde dich.</p>
-                
-                <form class="space-y-6">
-                    <div class="grid grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-medium text-zinc-400 mb-2">Name</label>
-                            <input type="text" class="w-full bg-zinc-900 border border-zinc-700 rounded p-3 text-white focus:border-brand-500 outline-none transition">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-zinc-400 mb-2">Telefon</label>
-                            <input type="text" class="w-full bg-zinc-900 border border-zinc-700 rounded p-3 text-white focus:border-brand-500 outline-none transition">
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-zinc-400 mb-2">E-Mail</label>
-                        <input type="email" class="w-full bg-zinc-900 border border-zinc-700 rounded p-3 text-white focus:border-brand-500 outline-none transition">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-zinc-400 mb-2">Deine Nachricht (inkl. Fahrzeugdaten)</label>
-                        <textarea rows="4" class="w-full bg-zinc-900 border border-zinc-700 rounded p-3 text-white focus:border-brand-500 outline-none transition"></textarea>
-                    </div>
-                    <button type="button" class="bg-brand-500 text-white font-oswald text-lg px-8 py-4 hover:bg-brand-600 transition w-full">NACHRICHT ABSENDEN</button>
-                </form>
-            </div>
-
-            <!-- Infos & Karte -->
-            <div class="animate-on-scroll space-y-8">
-                <div class="bg-zinc-900 p-8 rounded-lg border border-zinc-800">
-                    <h3 class="text-2xl text-white mb-6">KONTAKTDATEN</h3>
-                    <div class="space-y-4 text-zinc-400">
-                        <p class="flex items-center"><i class="fa-solid fa-location-dot w-8 text-brand-500 text-xl"></i> Werkstattweg 1, 74196 Oedheim</p>
-                        <p class="flex items-center"><i class="fa-solid fa-phone w-8 text-brand-500 text-xl"></i> +49 151 123 456 78</p>
-                        <p class="flex items-center"><i class="fa-solid fa-envelope w-8 text-brand-500 text-xl"></i> info@classicbikes-oedheim.de</p>
-                        <p class="flex items-center"><i class="fa-solid fa-clock w-8 text-brand-500 text-xl"></i> Mo-Fr: 09:00 - 18:00 Uhr (Terminvereinbarung)</p>
-                    </div>
-                </div>
-                
-                <!-- Google Maps Embed für Oedheim -->
-                <div class="h-64 w-full rounded-lg overflow-hidden border border-zinc-800">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d41775.14841975971!2d9.2217134!3d49.2372765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4798357077eef2c1%3A0x41ffd3c8d095870!2s74196%20Oedheim!5e0!3m2!1sde!2sde!4v1700000000000!5m2!1sde!2sde" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
+    <!-- Interactive Before / After Restoration Section -->
+    <section style="padding: 7rem 0; background: var(--bg-body); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div style="text-align: center; max-width: 720px; margin: 0 auto 3.5rem;">
+          <span class="section-tag" style="justify-content:center;">Interaktive Transformation</span>
+          <h2 class="section-title">VOM SCHEUNENFUND ZUM CONCOURSE-SIEGER</h2>
+          <p class="section-desc" style="margin: 0 auto;">
+            Ziehe den Schieberegler nach links und rechts, um die vollständige Verwandlung einer 1974er BMW R90/6 in unserer Werkstatt mitzuerleben.
+          </p>
         </div>
+
+        <!-- Draggable Comparison Slider -->
+        <div class="restoration-slider-container fade-up" aria-label="Vorher Nachher Motorrad Restauration Schieberegler">
+          <!-- Before Image (Base layer) -->
+          <img src="images/restoration_before.jpg" alt="BMW R90/6 vor der Restauration als Scheunenfund" class="slider-img before">
+          
+          <!-- After Image (Clipped layer) -->
+          <img src="images/restoration_after.jpg" alt="BMW R90/6 nach der vollständigen Concourse Restauration" class="slider-img after">
+
+          <!-- Draggable Divider Line & Handle -->
+          <div class="slider-handle">
+            <div class="slider-button">
+              <i class="fa-solid fa-left-right"></i>
+            </div>
+          </div>
+
+          <div class="slider-label before-label">VORHER: Scheunenfund 1974</div>
+          <div class="slider-label after-label">NACHHER: Concourse Meisterwerk</div>
+        </div>
+
+        <!-- Key Restoration Stats -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1.5rem; margin-top:3rem;">
+          <div style="background:var(--bg-surface); padding:1.5rem; border-radius:10px; border:1px solid var(--border-subtle); text-align:center;">
+            <i class="fa-solid fa-clock-rotate-left" style="color:var(--accent); font-size:1.8rem; margin-bottom:0.75rem;"></i>
+            <div style="font-family:var(--font-display); font-size:1.75rem; color:#fff; font-weight:700;">180+ Std.</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Handarbeit investiert</div>
+          </div>
+          <div style="background:var(--bg-surface); padding:1.5rem; border-radius:10px; border:1px solid var(--border-subtle); text-align:center;">
+            <i class="fa-solid fa-fingerprint" style="color:var(--accent); font-size:1.8rem; margin-bottom:0.75rem;"></i>
+            <div style="font-family:var(--font-display); font-size:1.75rem; color:#fff; font-weight:700;">100%</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Matching Numbers</div>
+          </div>
+          <div style="background:var(--bg-surface); padding:1.5rem; border-radius:10px; border:1px solid var(--border-subtle); text-align:center;">
+            <i class="fa-solid fa-shield-halved" style="color:var(--accent); font-size:1.8rem; margin-bottom:0.75rem;"></i>
+            <div style="font-family:var(--font-display); font-size:1.75rem; color:#fff; font-weight:700;">Note 1-</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Classic Data Gutachten</div>
+          </div>
+          <div style="background:var(--bg-surface); padding:1.5rem; border-radius:10px; border:1px solid var(--border-subtle); text-align:center;">
+            <i class="fa-solid fa-award" style="color:var(--accent); font-size:1.8rem; margin-bottom:0.75rem;"></i>
+            <div style="font-family:var(--font-display); font-size:1.75rem; color:#fff; font-weight:700;">24 Monate</div>
+            <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Werkstatt-Garantie</div>
+          </div>
+        </div>
+
+        <div style="text-align:center; margin-top:2.5rem;">
+          <a href="werkstatt.html" class="btn btn-secondary">
+            Mehr über unsere Restaurations-Philosophie <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-black py-12 border-t border-zinc-800 text-center">
-        <h2 class="text-3xl font-oswald text-white mb-6 tracking-widest">CLASSIC<span class="text-brand-500">BIKES</span></h2>
-        <div class="flex justify-center space-x-6 mb-8 text-2xl">
-            <a href="#" class="text-zinc-500 hover:text-brand-500 transition"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#" class="text-zinc-500 hover:text-brand-500 transition"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" class="text-zinc-500 hover:text-brand-500 transition"><i class="fa-brands fa-whatsapp"></i></a>
+    <!-- Services Overview Section -->
+    <section style="padding: 7rem 0; background: var(--bg-surface);">
+      <div class="container">
+        <div style="text-align:center; max-width:700px; margin: 0 auto 4rem;">
+          <span class="section-tag" style="justify-content:center;">Unser Handwerk</span>
+          <h2 class="section-title">LEISTUNGEN AUF HÖCHSTEM NIVEAU</h2>
+          <p class="section-desc" style="margin: 0 auto;">Vom TÜV-Gutachten über Motorüberholungen bis hin zu extremen Custom-Bikes – alles aus einer Hand in Oedheim.</p>
         </div>
-        <p class="text-zinc-600 text-sm">&copy; 2026 Classic Bikes Oedheim. Alle Rechte vorbehalten. | <a href="#" class="hover:text-white transition">Impressum</a> | <a href="#" class="hover:text-white transition">Datenschutz</a></p>
-    </footer>
 
-    <!-- ==========================================
-         JAVASCRIPT FÜR DIE INTERAKTIVITÄT
-         ========================================== -->
-    <script>
-        // 1. Navbar Scroll Effekt (wird schwarz beim Runterscrollen)
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.remove('bg-transparent', 'py-6');
-                nav.classList.add('bg-black/95', 'py-4', 'border-b', 'border-zinc-800');
-            } else {
-                nav.classList.add('bg-transparent', 'py-6');
-                nav.classList.remove('bg-black/95', 'py-4', 'border-b', 'border-zinc-800');
-            }
-        });
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:2rem;">
+          
+          <div class="feature-card fade-up">
+            <div class="feature-icon-box">
+              <i class="fa-solid fa-hammer"></i>
+            </div>
+            <h3 class="feature-title">Customizing & Umbau</h3>
+            <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem;">
+              Bobber, Cafe Racer, Scrambler oder Chopper. Wir fertigen individuelle Rahmenhecks, Tank-Modifikationen, Auspuffanlagen und saubere Elektronik.
+            </p>
+            <a href="leistungen.html" style="color:var(--accent); font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.06em;">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
 
-        // 2. Filter-Logik für den Showroom (Die Buttons)
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const bikeItems = document.querySelectorAll('.bike-item');
+          <div class="feature-card fade-up delay-1">
+            <div class="feature-icon-box">
+              <i class="fa-solid fa-gears"></i>
+            </div>
+            <h3 class="feature-title">Motor- & Getrieberevision</h3>
+            <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem;">
+              Präzise Instandsetzung von 2V-Boxern, Harley V-Twins und klassischen Mehrzylindern. Ultraschall-Vergaserreinigung, Zylinder hohnen und Feinwuchten.
+            </p>
+            <a href="leistungen.html" style="color:var(--accent); font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.06em;">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Styling der Buttons ändern
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-brand-500');
-                    b.classList.add('border', 'border-zinc-600');
-                });
-                btn.classList.remove('border', 'border-zinc-600');
-                btn.classList.add('bg-brand-500');
+          <div class="feature-card fade-up delay-2">
+            <div class="feature-icon-box">
+              <i class="fa-solid fa-stamp"></i>
+            </div>
+            <h3 class="feature-title">In-House TÜV & Gutachten</h3>
+            <p style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem;">
+              Regelmäßige Prüftermine bei uns vor Ort. Sondereintragungen nach § 21, H-Kennzeichen Oldtimergutachten § 23 und Classic Data Wertermittlungen.
+            </p>
+            <a href="leistungen.html" style="color:var(--accent); font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.06em;">Mehr erfahren <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
 
-                // Filter Logik anwenden
-                const filterValue = btn.getAttribute('data-filter');
-                
-                bikeItems.forEach(item => {
-                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
-                        item.style.display = 'block';
-                        // Kurzer Timeout für einen weichen Fade-in Effekt
-                        setTimeout(() => item.style.opacity = '1', 50);
-                    } else {
-                        item.style.opacity = '0';
-                        setTimeout(() => item.style.display = 'none', 300);
-                    }
-                });
-            });
-        });
+        </div>
+      </div>
+    </section>
 
-        // 3. High-End Scroll-Animationen (Intersection Observer)
-        // Lässt Elemente sanft einschweben, sobald man zu ihnen scrollt
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
+    <!-- Workshop Story / Atelier Showcase -->
+    <section style="padding: 7rem 0; background: var(--bg-body);">
+      <div class="container">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(360px, 1fr)); gap:4rem; align-items:center;">
+          <div class="fade-up">
+            <span class="section-tag">Die Manufaktur Oedheim</span>
+            <h2 class="section-title">MEHR ALS NUR EINE WERKSTATT</h2>
+            <div style="width:50px; height:3px; background:var(--accent); margin-bottom:1.75rem;"></div>
+            <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.75; margin-bottom:1.5rem;">
+              Bei uns in Oedheim riecht es nach Benzin, heißem Metall und frischem Zweitaktöl. Seit über 15 Jahren haben wir uns der Restaurierung und dem Veredeln klassischer Zweiräder verschrieben.
+            </p>
+            <p style="color:var(--text-muted); font-size:1.05rem; line-height:1.75; margin-bottom:2rem;">
+              Keine Fließbandabfertigung, keine halben Sachen. Wenn du bei uns eine Schraube löst, siehst du, dass auch darunter sauber gearbeitet wurde. Wir behandeln jedes Kundenmotorrad, als wäre es unser eigenes.
+            </p>
 
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Animation nur beim ersten Mal abspielen
-                }
-            });
-        }, observerOptions);
+            <div style="display:flex; flex-direction:column; gap:1rem; margin-bottom:2.5rem;">
+              <div style="display:flex; align-items:center; gap:0.75rem; color:#fff; font-weight:600;">
+                <i class="fa-solid fa-circle-check" style="color:var(--accent); font-size:1.1rem;"></i>
+                <span>Eingetragener Zweirad-Meisterbetrieb der Handwerkskammer</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.75rem; color:#fff; font-weight:600;">
+                <i class="fa-solid fa-circle-check" style="color:var(--accent); font-size:1.1rem;"></i>
+                <span>Eigene Rahmenrichtbank & Motorprüfstand</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.75rem; color:#fff; font-weight:600;">
+                <i class="fa-solid fa-circle-check" style="color:var(--accent); font-size:1.1rem;"></i>
+                <span>Bundesweiter geschlossener Abhol- und Lieferservice</span>
+              </div>
+            </div>
 
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+            <div style="display:flex; gap:1.25rem;">
+              <a href="werkstatt.html" class="btn btn-primary">Werkstatt entdecken</a>
+              <a href="kontakt.html" class="btn btn-secondary">Termin vereinbaren</a>
+            </div>
+          </div>
+
+          <div style="position:relative;" class="fade-up delay-1">
+            <div style="border-radius:14px; overflow:hidden; border:1px solid var(--border-medium); box-shadow:var(--shadow-lg);">
+              <img src="images/workshop.jpg" alt="Zweiradmechaniker Meister bei Motorrevision in Oedheim" style="width:100%; height:480px; object-fit:cover;">
+            </div>
+            
+            <div style="position:absolute; bottom:-1.5rem; left:-1.5rem; background:var(--bg-surface-elevated); border:1px solid var(--border-accent); border-radius:12px; padding:1.5rem 2rem; box-shadow:var(--shadow-lg);" class="hidden-mobile">
+              <div style="display:flex; align-items:center; gap:1rem;">
+                <i class="fa-solid fa-certificate" style="font-size:2.5rem; color:var(--accent);"></i>
+                <div>
+                  <div style="font-family:var(--font-display); font-size:1.4rem; color:#fff; font-weight:700;">MEISTERGARANTIE</div>
+                  <div style="font-size:0.8rem; color:var(--text-muted); text-transform:uppercase;">Tradition & Perfektion</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sell Your Bike CTA Section -->
+    <section style="padding: 6rem 0; background: linear-gradient(135deg, rgba(255,85,0,0.12) 0%, var(--bg-surface) 60%); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2.5rem;">
+          <div style="max-width:650px;">
+            <span class="badge badge-accent" style="margin-bottom:1rem;">Sofortiger Ankauf & Barzahlung</span>
+            <h2 class="section-title" style="margin-bottom:1rem;">WILLST DU DEIN MOTORRAD VERKAUFEN?</h2>
+            <p style="color:var(--text-muted); font-size:1.1rem; line-height:1.7;">
+              Wir suchen ständig Klassiker ab 1950, BMW Boxer, Harley-Davidson, Scheunenfunde oder Sammlungsauflösungen. Schnelle Abwicklung, faire Preise und bundesweite Abholung.
+            </p>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:1rem;">
+            <a href="ankauf.html" class="btn btn-primary btn-lg">
+              <i class="fa-solid fa-calculator"></i> Jetzt online Wert schätzen
+            </a>
+            <a href="tel:+4915112345678" class="btn btn-secondary">
+              <i class="fa-solid fa-phone"></i> Direkt anrufen: 0151 / 123 456 78
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials / Google Reviews -->
+    <section style="padding: 7rem 0; background: var(--bg-body);">
+      <div class="container">
+        <div style="text-align:center; max-width:700px; margin: 0 auto 4rem;">
+          <span class="section-tag" style="justify-content:center;">Was Kunden sagen</span>
+          <h2 class="section-title">BEWERTUNGEN & ERFAHRUNGEN</h2>
+          <div style="display:flex; justify-content:center; align-items:center; gap:0.5rem; margin-top:0.75rem;">
+            <div style="color:var(--amber); font-size:1.2rem;">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <span style="color:#fff; font-weight:700; font-size:1.1rem;">4.9 von 5.0 Sternen</span>
+            <span style="color:var(--text-dim); font-size:0.85rem;">(über 80 Google Rezensionen)</span>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:2rem;">
+          
+          <div class="feature-card fade-up">
+            <div style="color:var(--amber); margin-bottom:1rem; font-size:1rem;">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p style="color:var(--text-main); font-size:0.95rem; font-style:italic; line-height:1.7; margin-bottom:1.5rem;">
+              "Habe meine 1976er BMW R75 hier komplett restaurieren lassen. Was das Team daraus gemacht hat, grenzt an Magie! Jeder Schritt wurde mit Fotos dokumentiert und der Motor läuft seidenweich."
+            </p>
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <div style="width:40px; height:40px; border-radius:50%; background:var(--accent); color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">MS</div>
+              <div>
+                <div style="font-weight:700; color:#fff; font-size:0.9rem;">Markus S.</div>
+                <div style="font-size:0.75rem; color:var(--text-dim);">Heilbronn • BMW R75/5 Besitzer</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card fade-up delay-1">
+            <div style="color:var(--amber); margin-bottom:1rem; font-size:1rem;">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p style="color:var(--text-main); font-size:0.95rem; font-style:italic; line-height:1.7; margin-bottom:1.5rem;">
+              "Verkauf meiner Harley ging reibungslos über die Bühne. Herr Herold kam persönlich mit dem geschlossenen Anhänger, fairer Preis ohne Nachverhandeln und das Geld war sofort per Echtzeitüberweisung da!"
+            </p>
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <div style="width:40px; height:40px; border-radius:50%; background:#2563eb; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">TK</div>
+              <div>
+                <div style="font-weight:700; color:#fff; font-size:0.9rem;">Thomas K.</div>
+                <div style="font-size:0.75rem; color:var(--text-dim);">Stuttgart • Motorrad-Ankauf</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="feature-card fade-up delay-2">
+            <div style="color:var(--amber); margin-bottom:1rem; font-size:1rem;">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p style="color:var(--text-main); font-size:0.95rem; font-style:italic; line-height:1.7; margin-bottom:1.5rem;">
+              "Echte Enthusiasten, die ihr Handwerk verstehen. Mein Cafe-Racer Umbau hat dank der In-House TÜV-Abnahme ohne Beanstandung alle Plaketten bekommen. Absolut empfehlenswerte Werkstatt!"
+            </p>
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <div style="width:40px; height:40px; border-radius:50%; background:#059669; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">AW</div>
+              <div>
+                <div style="font-weight:700; color:#fff; font-size:0.9rem;">Alexander W.</div>
+                <div style="font-size:0.75rem; color:var(--text-dim);">Neckarsulm • Custom Umbau</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        
+        <!-- Brand Info -->
+        <div class="footer-col">
+          <div class="brand-logo" style="margin-bottom: 1.25rem;">
+            <div class="brand-icon"><i class="fa-solid fa-motorcycle"></i></div>
+            <div class="brand-text-wrap">
+              <span class="brand-name">CLASSIC<span>BIKES</span></span>
+              <span class="brand-subtext">Custom Schmiede Oedheim</span>
+            </div>
+          </div>
+          <p style="color:var(--text-muted); font-size:0.9rem; line-height:1.7; margin-bottom:1.5rem; max-width:320px;">
+            Dein Partner für klassische Motorräder, Concourse-Restaurationen, An- & Verkauf und professionelles Customizing in Baden-Württemberg.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-btn" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://wa.me/4915112345678" target="_blank" class="social-btn" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html"><i class="fa-solid fa-chevron-right"></i> Startseite</a></li>
+            <li><a href="showroom.html"><i class="fa-solid fa-chevron-right"></i> Showroom & Bestand</a></li>
+            <li><a href="werkstatt.html"><i class="fa-solid fa-chevron-right"></i> Die Werkstatt</a></li>
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> Leistungen</a></li>
+            <li><a href="ankauf.html"><i class="fa-solid fa-chevron-right"></i> Motorrad Ankauf</a></li>
+            <li><a href="kontakt.html"><i class="fa-solid fa-chevron-right"></i> Kontakt & Anfahrt</a></li>
+          </ul>
+        </div>
+
+        <!-- Services -->
+        <div class="footer-col">
+          <h4>Spezialgebiete</h4>
+          <ul class="footer-links">
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> BMW Boxer Restauration</a></li>
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> Harley-Davidson Custom</a></li>
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> In-House TÜV §21</a></li>
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> Oldtimer H-Gutachten</a></li>
+            <li><a href="ankauf.html"><i class="fa-solid fa-chevron-right"></i> Scheunenfunde Ankauf</a></li>
+            <li><a href="leistungen.html"><i class="fa-solid fa-chevron-right"></i> Hol- & Bringservice</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Hours -->
+        <div class="footer-col">
+          <h4>Werkstatt Oedheim</h4>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div>Werkstattweg 1<br>74196 Oedheim (Kreis Heilbronn)</div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-phone"></i>
+            <div>+49 151 123 456 78</div>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div>info@classicbikes-oedheim.de</div>
+          </div>
+          
+          <div class="footer-hours-card">
+            <div class="hours-row">
+              <span>Montag – Freitag:</span>
+              <span style="color:#fff; font-weight:600;">09:00 – 18:00 Uhr</span>
+            </div>
+            <div class="hours-row">
+              <span>Samstag:</span>
+              <span style="color:#fff; font-weight:600;">Nach Vereinbarung</span>
+            </div>
+            <div class="hours-row">
+              <span>Sonntag:</span>
+              <span>Geschlossen</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Classic Bikes Oedheim. Alle Rechte vorbehalten. Handgefertigt mit Leidenschaft.</div>
+        <div class="footer-bottom-links">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+          <a href="kontakt.html">Anfahrt</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll To Top Button -->
+  <button class="scroll-top-btn" aria-label="Nach oben scrollen">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/restoration-slider.js"></script>
 </body>
 </html>

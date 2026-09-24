@@ -1,63 +1,209 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classic Bikes - An- und Verkauf alter Motorräder</title>
-    <!-- Wir laden Tailwind CSS direkt aus dem Internet -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Ein bisschen Custom-Style für das Vintage-Gefühl */
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400;500&display=swap');
         body { font-family: 'Roboto', sans-serif; }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        h1, h2, h3, .vintage-font { font-family: 'Playfair Display', serif; }
+        
+        /* Eigener Scrollbar für den coolen Look */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #18181b; }
+        ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 5px; }
     </style>
 </head>
-<body class="bg-zinc-900 text-zinc-300">
+<body class="bg-zinc-900 text-zinc-300 relative">
+
+    <!-- Navigation Bar (Fixiert am oberen Rand) -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-zinc-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-amber-500 font-bold text-2xl vintage-font tracking-wider">CB.</div>
+            <div class="space-x-6 text-sm font-medium">
+                <a href="#services" class="hover:text-amber-500 transition">Services</a>
+                <a href="#galerie" class="hover:text-amber-500 transition">Aktueller Bestand</a>
+                <a href="#kontakt" class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded transition">Kontakt</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Header / Hero Section -->
-    <header class="relative bg-black text-white text-center py-32 overflow-hidden">
-        <!-- Ein Platzhalter für ein cooles Hintergrundbild (wird abgedunkelt) -->
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-30"></div>
-        <div class="relative z-10 max-w-4xl mx-auto px-6">
-            <h1 class="text-5xl md:text-7xl font-bold text-amber-500 mb-4">Classic Bikes</h1>
-            <p class="text-xl md:text-2xl mb-8">An- und Verkauf historischer Motorräder & Klassiker.</p>
-            <a href="#kontakt" class="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded transition duration-300">Kontakt aufnehmen</a>
+    <header class="relative bg-black text-white text-center h-screen flex flex-col justify-center items-center overflow-hidden">
+        <!-- Hintergrundbild mit Zoom-Animation -->
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-40 hover:scale-105 transition-transform duration-1000"></div>
+        
+        <div class="relative z-10 max-w-4xl mx-auto px-6 drop-shadow-2xl">
+            <h1 class="text-6xl md:text-8xl font-bold text-amber-500 mb-6 tracking-tight">Classic Bikes</h1>
+            <p class="text-xl md:text-2xl mb-10 font-light text-zinc-200">Rostiges Blech, ölige Hände und pure Leidenschaft.<br>Wir geben Zweirad-Legenden ein neues Leben.</p>
+            <a href="#galerie" class="border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-black font-bold py-3 px-8 rounded transition duration-300 mr-4">Bestand ansehen</a>
+        </div>
+        
+        <!-- Scroll Down Indikator -->
+        <div class="absolute bottom-10 animate-bounce">
+            <a href="#services" class="text-amber-500 text-3xl">↓</a>
         </div>
     </header>
 
-    <!-- Was wir machen -->
-    <section class="py-20 px-6 max-w-6xl mx-auto text-center">
-        <h2 class="text-4xl text-white mb-12">Unsere Leidenschaft: Altes Eisen</h2>
+    <!-- Services (Klickbare Karten) -->
+    <section id="services" class="py-24 px-6 max-w-7xl mx-auto text-center">
+        <h2 class="text-4xl text-white mb-4">Unsere Expertise</h2>
+        <p class="text-zinc-400 mb-16 max-w-2xl mx-auto">Klicke auf die Karten, um Beispielbilder und den genauen Ablauf zu sehen.</p>
+        
         <div class="grid md:grid-cols-2 gap-12 text-left">
-            <div class="bg-zinc-800 p-8 rounded-lg border border-zinc-700 shadow-lg">
-                <h3 class="text-2xl text-amber-500 mb-4">Ankauf</h3>
-                <p>Du hast einen alten Scheunenfund oder möchtest dich von einem geliebten Klassiker trennen? Wir kaufen Motorräder aller Marken aus vergangenen Jahrzehnten. Faire Bewertung und unkomplizierte Abwicklung.</p>
+            <!-- Karte Ankauf (Klickbar) -->
+            <div onclick="openModal('modal-ankauf')" class="group cursor-pointer bg-zinc-800/50 hover:bg-zinc-800 p-10 rounded-xl border border-zinc-700 hover:border-amber-500 shadow-lg transition-all duration-300 hover:-translate-y-2">
+                <div class="h-48 mb-6 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1615174092497-6cb1693dfacb?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Scheunenfund">
+                </div>
+                <h3 class="text-3xl text-amber-500 mb-4 group-hover:text-amber-400">Motorrad Ankauf ➔</h3>
+                <p class="text-zinc-400 group-hover:text-zinc-300 transition">Du hast einen alten Scheunenfund oder eine unfertige Restauration? Wir suchen ständig altes Eisen. Klicke für Details & Beispiele.</p>
             </div>
-            <div class="bg-zinc-800 p-8 rounded-lg border border-zinc-700 shadow-lg">
-                <h3 class="text-2xl text-amber-500 mb-4">Verkauf</h3>
-                <p>Wir haben ständig eine wechselnde Auswahl an restaurierten oder originalbelassenen Oldtimer-Motorrädern. Maschinen mit Charakter, Geschichte und Seele.</p>
+
+            <!-- Karte Verkauf (Klickbar) -->
+            <div onclick="openModal('modal-verkauf')" class="group cursor-pointer bg-zinc-800/50 hover:bg-zinc-800 p-10 rounded-xl border border-zinc-700 hover:border-amber-500 shadow-lg transition-all duration-300 hover:-translate-y-2">
+                <div class="h-48 mb-6 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1599819811279-d5ad9ce18220?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Restauriertes Bike">
+                </div>
+                <h3 class="text-3xl text-amber-500 mb-4 group-hover:text-amber-400">Verkauf & Restauration ➔</h3>
+                <p class="text-zinc-400 group-hover:text-zinc-300 transition">Entdecke unsere frisch restaurierten Maschinen. Komplett zerlegt, neu aufgebaut und mit TÜV. Klicke für aktuelle Beispiele.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galerie Sektion -->
+    <section id="galerie" class="py-20 bg-black border-t border-b border-zinc-800">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl text-white mb-12 text-center">Zuletzt vermittelt</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                <!-- Bild 1 -->
+                <div class="relative group overflow-hidden rounded-lg aspect-square">
+                    <img src="https://images.unsplash.com/photo-1558980663-3685c1d673c4?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-50">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-white text-xl font-bold bg-amber-600 px-4 py-2 rounded">BMW R75/5 (1972)</span>
+                    </div>
+                </div>
+                <!-- Bild 2 -->
+                <div class="relative group overflow-hidden rounded-lg aspect-square">
+                    <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-50">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-white text-xl font-bold bg-amber-600 px-4 py-2 rounded">Triumph Bonneville</span>
+                    </div>
+                </div>
+                <!-- Bild 3 -->
+                <div class="relative group overflow-hidden rounded-lg aspect-square">
+                    <img src="https://images.unsplash.com/photo-1525160854475-4cb91bd922f5?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover transition duration-500 group-hover:scale-110 group-hover:opacity-50">
+                    <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300">
+                        <span class="text-white text-xl font-bold bg-amber-600 px-4 py-2 rounded">Honda CB 750 Four</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Kontakt -->
-    <section id="kontakt" class="py-20 bg-zinc-950 border-t border-zinc-800">
+    <section id="kontakt" class="py-24 bg-zinc-900">
         <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-4xl text-white mb-8">Komm vorbei oder schreib uns</h2>
-            <div class="bg-zinc-800 p-8 rounded-lg inline-block text-left border border-zinc-700 shadow-xl">
-                <p class="mb-4"><strong class="text-amber-500">Adresse:</strong> Musterstraße 42, 12345 Motorstadt</p>
-                <p class="mb-4"><strong class="text-amber-500">Telefon:</strong> +49 123 456 789</p>
-                <p class="mb-8"><strong class="text-amber-500">E-Mail:</strong> info@classicbikes-muster.de</p>
-                <p class="text-sm text-zinc-500">Besichtigungen bitte nur nach vorheriger Terminabsprache.</p>
+            <h2 class="text-4xl text-white mb-8">Komm auf einen Kaffee vorbei</h2>
+            <div class="bg-zinc-800/80 backdrop-blur p-10 rounded-2xl inline-block text-left border border-zinc-700 shadow-2xl">
+                <p class="mb-4 text-lg"><strong class="text-amber-500 w-24 inline-block">Adresse:</strong> Werkstattweg 1, 74196 Oedheim</p>
+                <p class="mb-4 text-lg"><strong class="text-amber-500 w-24 inline-block">Telefon:</strong> 0151 / 123 456 78</p>
+                <p class="mb-8 text-lg"><strong class="text-amber-500 w-24 inline-block">E-Mail:</strong> schrauber@classicbikes.de</p>
+                <a href="mailto:schrauber@classicbikes.de" class="block text-center w-full bg-zinc-700 hover:bg-amber-600 text-white font-bold py-3 rounded transition duration-300">Nachricht schreiben</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black py-6 text-center text-zinc-600 text-sm">
-        <p>&copy; 2026 Classic Bikes. Alle Rechte vorbehalten. | <a href="#" class="hover:text-amber-500">Impressum</a></p>
+    <footer class="bg-black py-8 text-center text-zinc-600 text-sm">
+        <p>&copy; 2026 Classic Bikes Oedheim. | <a href="#" class="hover:text-amber-500">Impressum</a> | <a href="#" class="hover:text-amber-500">Datenschutz</a></p>
     </footer>
 
+
+    <!-- ==========================================
+         MODALS (Versteckte Popups)
+         ========================================== -->
+
+    <!-- Modal: Ankauf -->
+    <div id="modal-ankauf" class="fixed inset-0 bg-black/90 z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-zinc-900 border border-zinc-700 w-full max-w-4xl rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto mx-4">
+            <button onclick="closeModal('modal-ankauf')" class="absolute top-4 right-6 text-zinc-400 hover:text-amber-500 text-4xl font-bold">&times;</button>
+            <h2 class="text-3xl text-amber-500 mb-6 vintage-font">Was wir ankaufen</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1615174092497-6cb1693dfacb?q=80&w=800" class="rounded-lg mb-4 shadow-lg" alt="Scheunenfund">
+                    <p class="text-sm text-zinc-500">Beispiel: BMW R50 Scheunenfund, Standzeit 20 Jahre.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl text-white mb-2">Unser Prozess:</h3>
+                    <ul class="list-disc pl-5 space-y-3 text-zinc-300">
+                        <li><strong>Kontaktaufnahme:</strong> Schick uns Bilder per WhatsApp.</li>
+                        <li><strong>Einschätzung:</strong> Wir melden uns innerhalb von 24h mit einer groben Hausnummer.</li>
+                        <li><strong>Abholung:</strong> Wir kommen mit dem Hänger vorbei, zahlen bar und nehmen das Projekt mit.</li>
+                        <li><strong>Zustand:</strong> Darf rostig sein, darf in Kisten zerlegt sein, Motorschaden ist kein Problem.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Verkauf -->
+    <div id="modal-verkauf" class="fixed inset-0 bg-black/90 z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300">
+        <div class="bg-zinc-900 border border-zinc-700 w-full max-w-4xl rounded-2xl p-8 relative max-h-[90vh] overflow-y-auto mx-4">
+            <button onclick="closeModal('modal-verkauf')" class="absolute top-4 right-6 text-zinc-400 hover:text-amber-500 text-4xl font-bold">&times;</button>
+            <h2 class="text-3xl text-amber-500 mb-6 vintage-font">Aktuell zum Verkauf</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl text-white mb-2">Vollständig restauriert:</h3>
+                    <p class="text-zinc-300 mb-4">Alle unsere Bikes werden bis auf die letzte Schraube zerlegt. Rahmen gepulvert, Motor revidiert, Elektrik komplett neu. Mit frischem TÜV und H-Zulassung.</p>
+                    <button onclick="closeModal('modal-verkauf')" class="bg-amber-600 text-white px-6 py-2 rounded hover:bg-amber-700">Zurückschließen</button>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <img src="https://images.unsplash.com/photo-1599819811279-d5ad9ce18220?q=80&w=400" class="rounded border border-zinc-700">
+                    <img src="https://images.unsplash.com/photo-1558981001-1995369a39cd?q=80&w=400" class="rounded border border-zinc-700">
+                    <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=400" class="rounded border border-zinc-700">
+                    <img src="https://images.unsplash.com/photo-1558980394-0a37b36085cb?q=80&w=400" class="rounded border border-zinc-700">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT (Die Logik)
+         ========================================== -->
+    <script>
+        // Funktion zum Öffnen der Popups
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden'); // Macht das HTML-Element sichtbar
+            
+            // Kleiner Trick für einen weichen Übergang
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.classList.add('opacity-100');
+            }, 10);
+        }
+
+        // Funktion zum Schließen der Popups
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            
+            // Wartet, bis die Animation fertig ist, bevor es wieder komplett versteckt wird
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Schließt das Modal, wenn man ins Schwarze (außerhalb des Kastens) klickt
+        window.onclick = function(event) {
+            if (event.target.id === 'modal-ankauf') closeModal('modal-ankauf');
+            if (event.target.id === 'modal-verkauf') closeModal('modal-verkauf');
+        }
+    </script>
 </body>
 </html>
